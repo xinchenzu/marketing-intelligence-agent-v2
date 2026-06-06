@@ -1,0 +1,493 @@
+{
+  "name": "Marketing Intelligence Agent v2 - Assignment 4",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e6f7d3a0-c7b1-4567-9bba-4272bf73d9d7",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://blog.hubspot.com/marketing/rss.xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "cdf7bddb-30d4-4417-95a8-24f6a7966954",
+      "name": "RSS Read"
+    },
+    {
+      "parameters": {
+        "url": "https://sproutsocial.com/insights/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        144,
+        144
+      ],
+      "id": "008aeb6f-bc01-4206-bf22-bf5c4dc26503",
+      "name": "RSS Read1"
+    },
+    {
+      "parameters": {
+        "url": "https://blog.hootsuite.com/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        352,
+        144
+      ],
+      "id": "db4edb4c-87ac-4a94-ac2b-0cd24aee141b",
+      "name": "RSS Read2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "df49c28a-83be-45d8-a136-b1442433b180",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        624,
+        0
+      ],
+      "id": "c13c4e67-52b1-4d26-9aec-8bae252710c7",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5b7b8818-e75b-4bf0-941a-1b77def060ac",
+              "name": "title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "d216325c-d98a-4649-a30b-66207b60c072",
+              "name": "date",
+              "value": "={{ $json.date }}",
+              "type": "string"
+            },
+            {
+              "id": "b6c81f6c-7bad-45ad-bf1f-a87a3a50f250",
+              "name": "author",
+              "value": "={{ $json.author }}",
+              "type": "string"
+            },
+            {
+              "id": "502775fa-3ae8-49b6-ad6e-8b41a8274225",
+              "name": "link",
+              "value": "={{ $json.link }}",
+              "type": "string"
+            },
+            {
+              "id": "ddabffd8-f8c2-494d-889e-cb6f97c02d32",
+              "name": "source",
+              "value": "={{ $json.link.includes('hubspot') ? 'HubSpot' : $json.link.includes('sproutsocial') ? 'Sprout Social' : $json.link.includes('hootsuite') ? 'Hootsuite' : 'Unknown' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1440,
+        0
+      ],
+      "id": "f111d4be-a808-4979-8234-1908f39c5056",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        2080,
+        0
+      ],
+      "id": "6292443e-dbc7-4c09-a4f5-9f7fa44347f5",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "url": "https://www.socialmediaexaminer.com/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        560,
+        144
+      ],
+      "id": "649b12b0-c5f7-4bfe-9097-57f737aef546",
+      "name": "RSS Read3"
+    },
+    {
+      "parameters": {
+        "url": "https://www.searchenginejournal.com/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        736,
+        144
+      ],
+      "id": "0edd21ed-bf4d-4b7d-80b0-3130dd0e0c40",
+      "name": "RSS Read4"
+    },
+    {
+      "parameters": {
+        "url": "https://www.searchenginejournal.com/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        928,
+        144
+      ],
+      "id": "e8711cc8-9dd8-479c-9d59-62652150000a",
+      "name": "RSS Read5"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        832,
+        0
+      ],
+      "id": "8981c03b-ac10-4251-bbb9-f7df27fe5f92",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1040,
+        0
+      ],
+      "id": "a7443c07-4f7e-46cb-93c2-79c4a8f9cd7f",
+      "name": "Merge3"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1248,
+        0
+      ],
+      "id": "3420ae48-b8a4-472a-bbee-44e6b3939a1e",
+      "name": "Merge4"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a marketing intelligence assistant.\n\nAnalyze the following article.\n\nTitle:\n{{ $json.title }}\n\nSource:\n{{ $json.source }}\n\nLink:\n{{ $json.link }}\n\nReturn the results in this format:\n\nCategory:\n(SEO / Social Media / AI Marketing / Content Marketing)\n\nPriority:\n(High / Medium / Low)\n\nOne Sentence Summary:\n\nMarketing Recommendation:",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        1808,
+        0
+      ],
+      "id": "72ebb18d-24d4-462b-b4bc-fc9e4fd3d636",
+      "name": "Basic LLM Chain",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        1776,
+        208
+      ],
+      "id": "83dcc46c-95dc-4277-965d-6252b1937003",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "dJbYsIXN1DAbaofk",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const allItems = $input.all();\n\nconst randomIndex = Math.floor(Math.random() * allItems.length);\n\nreturn [allItems[randomIndex]];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1616,
+        0
+      ],
+      "id": "a61e358b-8892-41cc-91ce-8eb612aa9e37",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Read1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Read2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Read3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Read4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Read5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read2": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read3": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge3": {
+      "main": [
+        [
+          {
+            "node": "Merge4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read4": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge4": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read5": {
+      "main": [
+        [
+          {
+            "node": "Merge4",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        []
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "33c01c5f-baa6-42ab-aead-355da5742db7",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "677b01277bccbc3122f6bb996cb240a18a5abd61018e3e902d10816bd9e8ae30"
+  },
+  "id": "mFAB9YMurhdWP2Qk",
+  "tags": []
+}
